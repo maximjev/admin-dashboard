@@ -1,0 +1,30 @@
+.search {
+  margin-bottom: 3em;
+}
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 60px;
+  grid-row-gap: 15px;
+
+  grid-template-areas:  "id     name"
+                        "from    to"
+                        "btns    btns";
+
+}
+
+.from {
+  grid-area: from;
+}
+.to {
+  grid-area: to;
+}
+.id {
+  grid-area: id;
+}
+.name {
+  grid-area: name;
+}
+.btn-row {
+  grid-area: btns;
+}

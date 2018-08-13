@@ -1,0 +1,7 @@
+<div class="container-fluid">
+  <app-header *ngIf="isLoggedIn"></app-header>
+  <app-sidebar *ngIf="isLoggedIn"></app-sidebar>
+  <section class="container">
+    <router-outlet></router-outlet>
+  </section>
+</div>

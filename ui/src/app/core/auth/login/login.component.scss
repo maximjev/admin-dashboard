@@ -1,0 +1,16 @@
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 60px;
+  grid-row-gap: 15px;
+
+  grid-template-areas:  ". name     name      ."
+                        ". password password  .";
+
+}
+.name {
+  grid-area: name;
+}
+.password {
+  grid-area: password;
+}
