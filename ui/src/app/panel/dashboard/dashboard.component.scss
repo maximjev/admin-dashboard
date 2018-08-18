@@ -1,0 +1,35 @@
+.grid-wrapper {
+  display: grid;
+
+  grid-column-gap: 30px;
+  grid-row-gap: 15px;
+  grid-template-columns: repeat(6, 1fr);
+
+  grid-template-areas:
+    "chart-1 chart-1 chart-1 chart-2 chart-2 chart-2"
+    "chart-3 chart-3 chart-3 chart-4 chart-4 chart-4"
+    "chart-5 chart-5 chart-5 chart-5 chart-5 chart-5";
+}
+
+.chart-1 {
+  grid-area: chart-1;
+}
+
+.chart-2 {
+  grid-area: chart-2;
+}
+
+.chart-3 {
+  grid-area: chart-3;
+}
+.chart-4 {
+  grid-area: chart-4;
+}
+.chart-5 {
+  grid-area: chart-5;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+

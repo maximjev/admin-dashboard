@@ -1,4 +1,4 @@
 export enum TransactionType {
-  AUTHORIZE,
-  SALE_VOID
+  AUTHORIZE = 'AUTHORIZE',
+  SALE_VOID = 'SALE_VOID'
 }

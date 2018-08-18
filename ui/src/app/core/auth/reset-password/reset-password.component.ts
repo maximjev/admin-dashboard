@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserReset} from "../domain/user-reset";
 import {PasswordResetService} from "../service/password-reset.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-reset-password',
@@ -23,10 +24,12 @@ export class ResetPasswordComponent implements OnInit {
   invalidToken = false;
   notFound = false;
 
-  constructor(private resetService: PasswordResetService) {
+  constructor(private resetService: PasswordResetService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.send();
   }
 
   submit() {
@@ -35,21 +38,27 @@ export class ResetPasswordComponent implements OnInit {
     this.notFound = false;
 
     this.resetService.requestReset(this.user).subscribe(user => {
-      this.stepOne = false;
-      this.stepTwo = true;
-      this.loading = false;
-    },
+        this.stepOne = false;
+        this.stepTwo = true;
+        this.loading = false;
+      },
       error => this.handleError(error));
   }
 
   send() {
-    this.loading = true;
-    this.resetService.sendToken(this.user).subscribe(user => {
-      this.stepTwo = false;
-      this.stepThree = true;
-      this.loading = false;
-    },
-      error => this.handleError(error));
+    if (this.route.snapshot.queryParamMap.has('token')) {
+      this.loading = true;
+      this.user.code = this.route.snapshot.queryParams['token'];
+      this.resetService.sendToken(this.user)
+        .subscribe((user) => {
+            this.user = user;
+            this.stepOne = false;
+            this.stepTwo = false;
+            this.stepThree = true;
+            this.loading = false;
+          },
+          error => this.handleError(error));
+    }
   }
 
   reset() {
@@ -80,7 +89,7 @@ export class ResetPasswordComponent implements OnInit {
         break;
     }
 
-    switch(error.status) {
+    switch (error.status) {
       case 404:
         this.notFound = true;
         break;

@@ -8,7 +8,7 @@ public class TransactionFilterDTO {
 
     private String name;
 
-    private String id;
+    private Integer id;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime from;
@@ -24,11 +24,11 @@ public class TransactionFilterDTO {
         this.name = name;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

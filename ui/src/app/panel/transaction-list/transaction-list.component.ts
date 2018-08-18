@@ -9,6 +9,7 @@ import {Transaction} from "../domain/transaction";
 import {PageChangedEvent} from "ngx-bootstrap";
 import {Router} from "@angular/router";
 
+
 @Component({
   selector: 'app-transaction-list',
   templateUrl: './transaction-list.component.html',
@@ -87,7 +88,7 @@ export class TransactionListComponent implements OnInit {
       let a = document.createElement("a");
 
       a.href = window.URL.createObjectURL(data);
-      a.download = "export.xlsx";
+      a.download = "export.xls";
       a.click();
     });
   }

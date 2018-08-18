@@ -1,20 +1,69 @@
-<h1>Dashboard</h1>
+<h1 class="title">Dashboard</h1>
 
-<div id="accordion">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Bar chart
-        </button>
-      </h5>
-    </div>
+<div class="content grid-wrapper">
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-      <div class="card-body">
-        Some chart
+  <div class="chart-1">
+    <div class="elevated-container">
+      <div class="header-row">
+        <a class="toggle-button" data-toggle="collapse" data-target="#doughnut"><i class="fa  fa-2x fa-navicon"></i></a>
+      </div>
+
+      <div id="doughnut" aria-expanded="true" class="collapse show">
+        <p-chart type="doughnut" [data]="data"></p-chart>
       </div>
     </div>
+  </div>
+
+  <div class="chart-2">
+    <div class="elevated-container">
+      <div class="header-row">
+        <a class="toggle-button" data-toggle="collapse" data-target="#column"><i class="fa  fa-2x fa-navicon"></i></a>
+      </div>
+
+      <div id="column" aria-expanded="true" class="collapse show">
+        <p-chart type="bar" [data]="barData"></p-chart>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="chart-3">
+    <div class="elevated-container">
+      <div class="header-row">
+        <a class="toggle-button" data-toggle="collapse" data-target="#radar"><i class="fa  fa-2x fa-navicon"></i></a>
+      </div>
+
+      <div id="radar" aria-expanded="true" class="collapse show">
+        <p-chart type="radar" [data]="radarData"></p-chart>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="chart-4">
+    <div class="elevated-container">
+      <div class="header-row">
+        <a class="toggle-button" data-toggle="collapse" data-target="#line"><i class="fa  fa-2x fa-navicon"></i></a>
+      </div>
+
+      <div id="line" aria-expanded="true" class="collapse show">
+        <p-chart type="line" [data]="lineData"></p-chart>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="chart-5">
+    <div class="elevated-container">
+      <div class="header-row">
+        <a class="toggle-button" data-toggle="collapse" data-target="#pie"><i class="fa  fa-2x fa-navicon"></i></a>
+      </div>
+
+      <div id="pie" aria-expanded="true" class="collapse show">
+        <p-chart type="pie" [data]="pieData"></p-chart>
+      </div>
+    </div>
+
   </div>
 
 </div>

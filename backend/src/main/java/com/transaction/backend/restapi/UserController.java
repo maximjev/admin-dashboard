@@ -33,7 +33,7 @@ public class UserController {
     public ResponseEntity<?> resetRequest(@RequestBody PasswordResetDTO resetDTO) {
         return userRepository.findByUsername(resetDTO.getName()).map(user -> {
 
-            if(!user.getEmail().equals(resetDTO.getEmail())) {
+            if (!user.getEmail().equals(resetDTO.getEmail())) {
                 return new ResponseEntity<>("NAME_AND_EMAIL_MISMATCH", HttpStatus.BAD_REQUEST);
             }
 
@@ -46,12 +46,15 @@ public class UserController {
 
     @PostMapping("token")
     public ResponseEntity<?> token(@RequestBody PasswordResetDTO resetDTO) {
-        return userRepository.findByUsername(resetDTO.getName()).map(user -> {
-            if(user.getResetCode().equals(resetDTO.getCode())) {
-                return ok(resetDTO);
-            } else {
-                return new ResponseEntity<>("INVALID_TOKEN", HttpStatus.BAD_REQUEST);
-            }
+        return userRepository.findByResetCode(resetDTO.getCode()).map(user -> {
+            user.setResetCode(null);
+            resetDTO.setId(user.getId());
+            resetDTO.setName(user.getUsername());
+
+            userRepository.save(user);
+
+            return ok(resetDTO);
+
         }).orElseGet(() -> notFound().build());
     }
 

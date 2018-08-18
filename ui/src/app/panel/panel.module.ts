@@ -11,6 +11,8 @@ import {PanelRoutingModule} from "./panel-routing.module";
 import {OwlDateTimeModule, OwlNativeDateTimeModule} from "ng-pick-datetime";
 import {FormsModule} from "@angular/forms";
 import {TransactionDetailsComponent} from './transaction-details/transaction-details.component';
+import {ChartModule} from "primeng/chart";
+import {FormatTypePipe} from "./common/format-type.pipe";
 
 
 @NgModule({
@@ -19,6 +21,7 @@ import {TransactionDetailsComponent} from './transaction-details/transaction-det
     CoreModule,
     RouterModule,
     FormsModule,
+    ChartModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     PaginationModule.forRoot()
@@ -27,10 +30,12 @@ import {TransactionDetailsComponent} from './transaction-details/transaction-det
     DashboardComponent,
     TransactionListComponent,
     TransactionComponent,
+    FormatTypePipe,
     TransactionDetailsComponent
   ],
   exports: [
-    PanelRoutingModule
+    PanelRoutingModule,
+    FormatTypePipe
   ]
 })
 export class PanelModule { }

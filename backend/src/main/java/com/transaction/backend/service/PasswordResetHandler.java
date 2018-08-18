@@ -17,6 +17,12 @@ public class PasswordResetHandler {
     @Value("${app.email.reset.content}")
     private String content;
 
+    @Value("${app.url}")
+    private String appUrl;
+
+    @Value("${app.reset-url}")
+    private String resetUrl;
+
     @Autowired
     private EMailSender EMailSender;
 
@@ -30,6 +36,8 @@ public class PasswordResetHandler {
 
         userRepository.save(user);
 
-        EMailSender.sendMail(user.getEmail(),subject, String.format(content, code));
+        String tokenUrl = appUrl + resetUrl + code;
+
+        EMailSender.sendMail(user.getEmail(), subject, String.format(content, tokenUrl));
     }
 }

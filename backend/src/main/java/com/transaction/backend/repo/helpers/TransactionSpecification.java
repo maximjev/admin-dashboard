@@ -17,7 +17,7 @@ public class TransactionSpecification extends BaseSpecification<Transaction, Tra
     public Specification<Transaction> getFilter(TransactionFilter request) {
         return ((root, criteriaQuery, criteriaBuilder) -> {
             criteriaQuery.distinct(true);
-            return (idContains(request.getId())
+            return (idEquals(request.getId())
                     .or(nameContains(request.getName()))
                     .and(isBefore("createdOn", request.getTo()))
                     .and(isAfter("createdOn", request.getFrom())))
@@ -39,8 +39,16 @@ public class TransactionSpecification extends BaseSpecification<Transaction, Tra
         };
     }
 
-    private Specification<Transaction> idContains(String id) {
-        return transactionAttributeContains("id", id);
+    private Specification<Transaction> idEquals(Integer value) {
+        return (root, query, cb) -> {
+            if (value == null) {
+                return null;
+            }
+
+            return cb.equal(
+                    root.get("id"),
+                    value);
+        };
     }
 
     private Specification<Transaction> nameContains(String name) {

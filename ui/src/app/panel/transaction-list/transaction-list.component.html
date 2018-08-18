@@ -1,89 +1,104 @@
 <h1>Transactions</h1>
 
-<div class="search">
-  <form class="grid-wrapper">
-    <div class="form-group id">
-      <label for="id">Transaction ID</label>
-      <input id="id" type="text" name="id" class="form-control" [(ngModel)]="filter.id">
-    </div>
-
-    <div class="form-group name">
-      <label for="name">Transaction name</label>
-      <input id="name" type="text" name="name" class="form-control" [(ngModel)]="filter.name">
-    </div>
-
-    <div class="form-group from">
-      <label for="from">From</label>
-      <input id="from" [owlDateTime]="dt1" class="form-control" [owlDateTimeTrigger]="dt1" name="from" [(ngModel)]="filter.from">
-      <owl-date-time #dt1 [showSecondsTimer]="true"></owl-date-time>
-    </div>
-
-    <div class="form-group to">
-      <label for="to">To</label>
-      <input id="to" [owlDateTime]="dt2" class="form-control" [owlDateTimeTrigger]="dt2" name="to" [(ngModel)]="filter.to">
-      <owl-date-time #dt2  [showSecondsTimer]="true"></owl-date-time>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn btn-primary" type="submit" (click)="search()">Filter</button>
-      <button class="btn btn-secondary" type="submit" (click)="clear()">Reset</button>
-    </div>
-  </form>
-
-
-</div>
-
-<div class="btn-row">
-  <pagination
-    [totalItems]="totalMatching"
-    [itemsPerPage]="itemsPerPage"
-    (pageChanged)="changePage($event)"
-    [(ngModel)]="currentPage"
-  ></pagination>
-
-  <div class="export">
-    <button class="btn btn-secondary" (click)="export()">Export</button>
+<div class="elevated-container">
+  <div class="header-row">
+    <a class="toggle-button" data-toggle="collapse" data-target="#search"><i class="fa  fa-2x fa-navicon"></i></a>
   </div>
-</div>
 
-<div class="list">
-  <table class="table table-hover">
-    <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">action</th>
-      <th scope="col">name</th>
-      <th scope="col">type</th>
-      <th scope="col">Created on</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let transaction of transactions">
-      <th scope="row">{{transaction.id}}</th>
-      <th>
-        <div class="btn-group">
-          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" (click)="toEdit(transaction)">Edit</a>
-            <a class="dropdown-item" (click)="toView(transaction)">View</a>
-          </div>
+  <div id="search" aria-expanded="true" class="collapse show">
+    <div class="search">
+      <form class="grid-wrapper">
+        <div class="form-group id">
+          <label for="id">Transaction ID</label>
+          <input id="id" type="text" name="id" class="form-control" [(ngModel)]="filter.id">
         </div>
 
-      </th>
-      <td>{{transaction.name}}</td>
-      <td>{{transaction.type}}</td>
-      <td>{{transaction.createdOn | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
-    </tr>
-    </tbody>
-  </table>
+        <div class="form-group name">
+          <label for="name">Transaction name</label>
+          <input id="name" type="text" name="name" class="form-control" [(ngModel)]="filter.name">
+        </div>
 
-  <pagination
-    [totalItems]="totalMatching"
-    [itemsPerPage]="itemsPerPage"
-    (pageChanged)="changePage($event)"
-    [(ngModel)]="currentPage"
-  ></pagination>
+        <div class="form-group from">
+          <label for="from">From</label>
+          <input id="from" [owlDateTime]="dt1" class="form-control" [owlDateTimeTrigger]="dt1" name="from"
+                 [(ngModel)]="filter.from">
+          <owl-date-time #dt1 [showSecondsTimer]="true"></owl-date-time>
+        </div>
+
+        <div class="form-group to">
+          <label for="to">To</label>
+          <input id="to" [owlDateTime]="dt2" class="form-control" [owlDateTimeTrigger]="dt2" name="to"
+                 [(ngModel)]="filter.to">
+          <owl-date-time #dt2 [showSecondsTimer]="true"></owl-date-time>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-primary" type="submit" (click)="search()">Filter</button>
+          <button class="btn btn-secondary" type="submit" (click)="clear()">Reset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
 
 
+<div class="list-wrapper elevated-container">
+
+
+  <div class="btn-row">
+    <pagination
+      [totalItems]="totalMatching"
+      [itemsPerPage]="itemsPerPage"
+      (pageChanged)="changePage($event)"
+      [(ngModel)]="currentPage"
+    ></pagination>
+
+    <div class="export">
+      <button class="btn btn-secondary" (click)="export()">Export</button>
+    </div>
+  </div>
+
+  <div class="list">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">action</th>
+        <th scope="col">name</th>
+        <th scope="col">type</th>
+        <th scope="col">Created on</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let transaction of transactions">
+        <th scope="row">{{transaction.id}}</th>
+        <th>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+              actions
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" (click)="toEdit(transaction)">Edit</a>
+              <a class="dropdown-item" (click)="toView(transaction)">View</a>
+            </div>
+          </div>
+
+        </th>
+        <td>{{transaction.name}}</td>
+        <td>{{transaction.type | formatType}}</td>
+        <td>{{transaction.createdOn | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <pagination
+      [totalItems]="totalMatching"
+      [itemsPerPage]="itemsPerPage"
+      (pageChanged)="changePage($event)"
+      [(ngModel)]="currentPage"
+    ></pagination>
+
+  </div>
 </div>
