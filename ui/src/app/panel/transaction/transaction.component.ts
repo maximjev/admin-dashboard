@@ -25,7 +25,6 @@ export class TransactionComponent implements OnInit {
 
   ngOnInit() {
     this.transactionService.getTypes().subscribe(values => {
-      console.log(values);
       this.types = values;
     });
 

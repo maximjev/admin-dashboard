@@ -84,7 +84,6 @@ export class TransactionListComponent implements OnInit {
 
   export() {
     this.listService.export().subscribe(data => {
-      console.log(data);
       let a = document.createElement("a");
 
       a.href = window.URL.createObjectURL(data);
