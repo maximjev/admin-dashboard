@@ -1,4 +1,4 @@
-<h1>Transaction</h1>
+<h1 class="title">Transaction</h1>
 
 <form class="grid-wrapper" #f="ngForm">
   <div *ngIf="edit" class="form-group id">
@@ -32,6 +32,10 @@
   <div class="btn-row">
     <button class="btn btn-primary" [disabled]="f.invalid" (click)="submit()">Submit</button>
     <button class="btn btn-secondary" (click)="clear()">Clear</button>
+  </div>
+
+  <div class="error">
+    <div *ngIf="valueExists" class="alert alert-danger">Transaction with current name already exists!</div>
   </div>
 
 </form>

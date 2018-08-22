@@ -19,9 +19,12 @@ export class TransactionComponent implements OnInit {
 
   edit = false;
 
+  valueExists = false;
+
   constructor(private transactionService: TransactionService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.transactionService.getTypes().subscribe(values => {
@@ -30,14 +33,14 @@ export class TransactionComponent implements OnInit {
 
     this.route.params.pipe(
       flatMap(params => {
-        if(params['id']) {
+        if (params['id']) {
           return this.transactionService.get(params['id']);
         } else {
           return of(null);
         }
       })
     ).subscribe(value => {
-      if(value != null) {
+      if (value != null) {
         this.transaction = value;
         this.edit = true;
       }
@@ -51,14 +54,21 @@ export class TransactionComponent implements OnInit {
   }
 
   submit() {
-    if(this.edit) {
-      this.transactionService.persist(this.transaction).subscribe(value => {
+    if (this.edit) {
+      this.transactionService.persist(this.transaction).subscribe(() => {
         this.router.navigate(['panel', 'transactions', 'list']);
       })
     } else {
-      this.transactionService.save(this.transaction).subscribe(value => {
-        this.router.navigate(['panel', 'transactions', 'list']);
-      });
+      this.transactionService.save(this.transaction).subscribe(() => {
+          this.router.navigate(['panel', 'transactions', 'list']);
+        },
+        error => this.handleError(error.error));
+    }
+  }
+
+  handleError(error: string) {
+    if (error === 'TRANSACTION_EXISTS') {
+      this.valueExists = true;
     }
   }
 }

@@ -1,21 +1,15 @@
-<h1>Details</h1>
+<h1 class="title">Details</h1>
 
-<div class="elevated-container">
-  <div class="header-row">
-    <a class="toggle-button" data-toggle="collapse" data-target="#data"><i class="fa  fa-2x fa-navicon"></i></a>
-  </div>
+<div>
+  <div class="details-wrapper">
 
-  <div id="data" aria-expanded="true" class="collapse show">
-    <div class="details-wrapper">
+    <h2>Transaction - {{transaction?.id}}</h2>
 
-      <h2>Transaction - {{transaction?.id}}</h2>
-
-      <p>Transaction name - {{transaction?.name}}</p>
-      <p>Transaction type - {{transaction?.type | formatType}}</p>
-      <p>Created on - {{transaction?.createdOn | date: 'yyyy-MM-dd HH:mm:ss' }}</p>
-
-    </div>
+    <p>Transaction name - {{transaction?.name}}</p>
+    <p>Transaction type - {{transaction?.type | formatType}}</p>
+    <p>Created on - {{transaction?.createdOn | date: 'yyyy-MM-dd HH:mm:ss' }}</p>
 
   </div>
+
 </div>
 

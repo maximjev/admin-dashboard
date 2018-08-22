@@ -44,21 +44,6 @@ public class BackendApplication {
         transactionList.add(new Transaction("name 4", Transaction.TransactionType.AUTHORIZE));
         transactionList.add(new Transaction("name 5", Transaction.TransactionType.AUTHORIZE));
         transactionList.add(new Transaction("name 6", Transaction.TransactionType.SALE_VOID));
-        transactionList.add(new Transaction("name 6", Transaction.TransactionType.SALE_VOID));
-        transactionList.add(new Transaction("name 6", Transaction.TransactionType.SALE_VOID));
-        transactionList.add(new Transaction("name 6", Transaction.TransactionType.SALE_VOID));
-        transactionList.add(new Transaction("name 6", Transaction.TransactionType.SALE_VOID));
-        transactionList.add(new Transaction("name 6", Transaction.TransactionType.SALE_VOID));
-        transactionList.add(new Transaction("name 6", Transaction.TransactionType.SALE_VOID));
-        transactionList.add(new Transaction("name 6", Transaction.TransactionType.SALE_VOID));
-        transactionList.add(new Transaction("name 6", Transaction.TransactionType.SALE_VOID));
-        transactionList.add(new Transaction("name 6", Transaction.TransactionType.SALE_VOID));
-        transactionList.add(new Transaction("name 6", Transaction.TransactionType.SALE_VOID));
-        transactionList.add(new Transaction("name 6", Transaction.TransactionType.SALE_VOID));
-        transactionList.add(new Transaction("name 6", Transaction.TransactionType.SALE_VOID));
-        transactionList.add(new Transaction("name 6", Transaction.TransactionType.SALE_VOID));
-        transactionList.add(new Transaction("name 6", Transaction.TransactionType.SALE_VOID));
-        transactionList.add(new Transaction("name 6", Transaction.TransactionType.SALE_VOID));
         transactionRepository.saveAll(transactionList);
     }
 }
